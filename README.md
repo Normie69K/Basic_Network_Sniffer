@@ -2,22 +2,21 @@
 
 ## Overview
 
-The **CodeAlpha Basic Network Sniffer** is a Python-based tool that captures and analyzes network traffic. It is designed to provide insights into how data flows through a network and to help users understand packet structures, including Ethernet, IP, TCP, and UDP headers. This tool is an excellent starting point for those interested in networking, cybersecurity, or ethical hacking.
+The **CodeAlpha Basic Network Sniffer** is a Python-based tool that captures and analyzes network traffic. It provides insights into Ethernet frames, IPv4 packets, ICMP, and TCP segments, making it a great resource for learning about network protocols and packet structures. This tool is ideal for networking enthusiasts, cybersecurity learners, and ethical hackers.
 
 ---
 
 ## Features
 
 - **Packet Capture**:
-  - Captures network packets in real-time.
-  - Displays source and destination IP addresses, ports, and protocols.
+  - Captures raw network traffic in real-time using `socket`.
+  - Displays Ethernet, IPv4, ICMP, and TCP packet details.
 - **Protocol Analysis**:
-  - Supports TCP, UDP, and ICMP protocols.
-  - Parses and displays detailed packet headers.
-- **Filtering**:
-  - Option to filter packets by protocol type.
-- **Save to File**:
-  - Export captured packets to `.pcap` files for further analysis.
+  - Parses Ethernet frames to extract MAC addresses and protocol types.
+  - Decodes IPv4 packets, including TTL, source, and destination IPs.
+  - Unpacks and analyzes ICMP and TCP headers.
+- **Custom Formatting**:
+  - Formats multi-line data for better readability during analysis.
 
 ---
 
@@ -29,16 +28,13 @@ Before running this tool, ensure you have the following:
 
 2. Required Python modules:
 
-   - `scapy`
    - `socket`
+   - `struct`
+   - `textwrap`
 
-   Install them using pip:
+   These modules are part of Python's standard library, so no additional installation is necessary.
 
-   ```bash
-   pip install scapy
-   ```
-
-3. Administrator/root privileges (required for packet capture).
+3. Administrator/root privileges (required for raw socket access).
 
 4. A basic understanding of networking concepts is recommended.
 
@@ -58,12 +54,6 @@ Before running this tool, ensure you have the following:
    cd CodeAlpha_Basic_Network_Sniffer
    ```
 
-3. Install dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 ---
 
 ## Usage
@@ -74,17 +64,20 @@ To start the network sniffer, run the following command:
 sudo python network_sniffer.py
 ```
 
-### Command-Line Options
+### Example Output
 
-| Option            | Description                                  |
-| ----------------- | -------------------------------------------- |
-| `--protocol`      | Filter packets by protocol (e.g., TCP, UDP). |
-| `--output <file>` | Save captured packets to a `.pcap` file.     |
+When running the tool, you will see output like:
 
-Example:
+```
+Ethernet Frame:
+Destination: AA:BB:CC:DD:EE:FF, Source: FF:EE:DD:CC:BB:AA, Protocol: 8
 
-```bash
-sudo python network_sniffer.py --protocol tcp --output traffic.pcap
+IPv4 Packet:
+Version: 4, Header Length: 20, TTL: 64
+Protocol: 1, Source: 192.168.1.1, Target: 192.168.1.2
+
+ICMP Packet:
+Type: 8, Code: 0, Checksum: 12345
 ```
 
 ---
@@ -95,26 +88,25 @@ sudo python network_sniffer.py --protocol tcp --output traffic.pcap
 CodeAlpha_Basic_Network_Sniffer/
 ├── network_sniffer.py     # Main script for packet capturing
 ├── README.md              # Project documentation
-├── requirements.txt       # Python dependencies
 └── LICENSE                # License file
 ```
 
 ---
 
-## Screenshots
+## Known Limitations
 
-### Packet Capture in Action:
-
-
+- Currently supports Ethernet, IPv4, ICMP, and TCP protocols.
+- No advanced filtering options (e.g., by IP address or port range).
+- Does not save captured packets to files like `.pcap`.
 
 ---
 
 ## Potential Enhancements
 
-- Add support for HTTPS decryption (with proper permissions).
-- Create a GUI for easier interaction.
-- Implement advanced filtering options (e.g., by IP, port range).
-- Integrate with tools like Wireshark for deeper analysis.
+- Add support for additional protocols (e.g., UDP, ARP).
+- Implement packet filtering by source/destination IP or port.
+- Save captured packets to `.pcap` format for analysis in Wireshark.
+- Build a user-friendly GUI for non-technical users.
 
 ---
 
@@ -123,7 +115,7 @@ CodeAlpha_Basic_Network_Sniffer/
 Contributions are welcome! Follow these steps:
 
 1. Fork the repository.
-2. Create a new branch for your feature/bug fix:
+2. Create a new branch for your feature or bug fix:
    ```bash
    git checkout -b feature-name
    ```
