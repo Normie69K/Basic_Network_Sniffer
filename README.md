@@ -1,8 +1,8 @@
-# CodeAlpha Basic Network Sniffer
+#  Basic Network Sniffer
 
 ## Overview
 
-The **CodeAlpha Basic Network Sniffer** is a Python-based tool that captures and analyzes network traffic. It provides insights into Ethernet frames, IPv4 packets, ICMP, and TCP segments, making it a great resource for learning about network protocols and packet structures. This tool is ideal for networking enthusiasts, cybersecurity learners, and ethical hackers.
+The **Basic Network Sniffer** is a Python-based tool that captures and analyzes network traffic. It provides insights into Ethernet frames, IPv4 packets, ICMP, and TCP segments, making it a great resource for learning about network protocols and packet structures. This tool is ideal for networking enthusiasts, cybersecurity learners, and ethical hackers.
 
 ---
 
@@ -135,8 +135,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 This tool is intended for educational purposes only. Do not use it to sniff traffic on networks you do not own or have explicit permission to monitor.
 
 ---
-
-## Acknowledgments
-
-Special thanks to **CodeAlpha** for inspiring this project and providing guidance on cybersecurity practices.
 
